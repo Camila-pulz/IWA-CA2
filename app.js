@@ -1,22 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const routes = require('./routes');
+const bodyParser = require("body-parser");
 const app = express();
 
-//const MongoClient = require('mongodb').MongoClient;
-//const uri = "mongodb+srv://camilaf:sn2017162@clusterca2-0oks7.mongodb.net/test?retryWrites=true&w=majority";
-//const client = new MongoClient(uri, { useNewUrlParser: true });
+
+app.use(bodyParser.json());
+app.use(routes);
 
 
-
-//Routes
-app.get('/', (req,res) =>{
-    res.send('We are on the home');
-
-});
-
-app.get('/posts', (req, res) =>{
-    res.send("We are on post");
-});
 
 //connect to the database 
 mongoose.connect(
