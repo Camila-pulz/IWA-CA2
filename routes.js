@@ -34,4 +34,24 @@ router.post('/', (req,res) => {
 });
 });
 
+//to delete a record from the database
+router.delete('/:id', (req,res) => {
+    Media.findByIdAndRemove(req.params.id, function (err, media) {
+    if (err) {
+      res.status(400).json(err);
+    } 
+    res.json(media);
+  });
+});
+
+//to update a record in the database 
+router.patch('/:id', (req,res) => {
+    Media.findOneAndUpdate({_id: req.params.id}, req.body, {new: true},function (err, media) {
+    if (err) {
+      res.status(400).json(err);
+    } 
+    res.json(media);
+  }); 
+});
+
 module.exports = router;
