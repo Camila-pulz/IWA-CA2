@@ -3,17 +3,18 @@ const router = express.Router();
 const Media = require("./model/media"); //to use the schema from the media file
 
 //to get all the records on the database 
-router.get('/', (req,res) =>{
+router.get('/users', (req,res) =>{
     Media.find({}, function (err, media) {
     if (err) {
       res.status(400).json(err); 
     } 
     res.json(media);
+    //res.jsonp(media);
   }); 
 });
 
 //to get a specific media from the database 
-router.get('/:id', (req,res) =>{
+router.get('/users/:id', (req,res) =>{
     Media.findOne({_id: req.params.id}, function (err, media) {
     if (err) {
       res.status(400).json(err);
@@ -45,7 +46,7 @@ router.delete('/:id', (req,res) => {
 });
 
 //to update a record in the database 
-router.patch('/:id', (req,res) => {
+router.patch('/users/:id', (req,res) => {
     Media.findOneAndUpdate({_id: req.params.id}, req.body, {new: true},function (err, media) {
     if (err) {
       res.status(400).json(err);

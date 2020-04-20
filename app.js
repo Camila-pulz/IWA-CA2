@@ -7,6 +7,7 @@ const routes = require('./routes');
 const bodyParser = require("body-parser");//to convert the json files
 const cors = require('cors');//this module allows the communication between domains in different ports
 const autosanitizer = require('express-autosanitizer');//to sanitise the code
+require('dotenv/config');//this package allow the credentials to be stored in other file and not be shown on the code
 
 
 const app = express();//function to create the server
@@ -20,27 +21,34 @@ app.use(routes);
 app.use(autosanitizer.allUnsafe);
 
 app.get('/',function(req,res){
-    res.render('index');
+   res.render('index');
 })
 
 app.get('/get/html',function(req,res){
     res.writeHead(200,{'content-Type':'text/html'});
 });
 
-fs.readFile('./index.html', null, function (error, data) {
+fs.readFile('./views/index.html', null, function (error, data) {
         if (error) {
             console.log(error);
-        } else {
-            res.write(data);
         }
-        //res.end();
+        // else {
+         //   console.log(data);
+       // }
+      //  res.end();
     });
+
+    app.post('/post/json', function(req, res) {
+    function appendJSON(obj) {
+     console.log(obj);
+    };
+});
 
 
 
 //connect to the database 
 mongoose.connect(
-    'mongodb+srv://camilaf:sn2017162@clusterca2-0oks7.mongodb.net/test?retryWrites=true&w=majority',
+    process.env.MONGODB_CONNECTION,//this line has the credentials that are needed to connect to the database 
    { useNewUrlParser: true },
     () => console.log('Connected to the database')
 );

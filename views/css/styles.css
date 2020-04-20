@@ -10,8 +10,6 @@ table {
 }
 */
 
-/* collapse border */
-
 table {
     border-collapse: collapse;
     width: 100%;
