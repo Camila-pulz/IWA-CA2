@@ -1,6 +1,24 @@
+//this file hold all the operations for the media records
 const express = require('express');
 const router = express.Router();
 const Media = require("./model/media"); //to use the schema from the media file
+
+router.get('/', (req,res) => {//function to present the index page once the request is sent
+   res.render("records/addOrEdit", {
+       viewTitle: "@MediaBucketList: include your record!"
+   });
+});
+
+//To save a new media to the database 
+router.post('/', (req,res) => {
+    const newmedia = new Media(req.body);//creation of a new media based on the data which was sent from the form
+    newmedia.save(function (err, media) { //function that saves the data into MongoDB
+        if (err) { //throws an error if there is any issue
+            res.status(400).json(err);
+        }
+        res.json(media); //send the new created media
+});
+});
 
 //to get all the records on the database 
 router.get('/users', (req,res) =>{
@@ -24,16 +42,6 @@ router.get('/users/:id', (req,res) =>{
 });
 
 
-//To save a new media to the database 
-router.post('/', (req,res) => {
-    const newmedia = new Media(req.body);//creation of a new media based on the data which was inserted in postman
-    newmedia.save(function (err, media) { //function that saves the data into MongoDB
-        if (err) { //throws an error if there is any issue
-            res.status(400).json(err);
-        }
-        res.json(media); //send the new created media
-});
-});
 
 //to delete a record from the database
 router.delete('/:id', (req,res) => {
