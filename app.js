@@ -9,7 +9,6 @@ const routes = require('./routes');
 const bodyParser = require("body-parser");//to convert the json files
 const cors = require('cors');//this module allows the communication between domains in different ports
 const autosanitizer = require('express-autosanitizer');//to sanitise the code
-const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 require('dotenv/config');//this package allow the credentials to be stored in other file and not be shown on the code
 
 
@@ -19,8 +18,8 @@ const server = http.createServer(app);//function to create the web server
 //app.use(express.static(path.resolve(__dirname,'views')));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('views', path.join(__dirname, '/views/'));
-app.engine('hbs', handlebars({extname: 'hbs', defaultLayout: 'mainLayout', layoutsDir: __dirname + '/views/layouts/'}), 
-expressHandlebars({handlebars: allowInsecurePrototypeAccess(handlebars)}));
+app.engine('hbs', handlebars({extname: 'hbs', defaultLayout: 'mainLayout', layoutsDir: __dirname + '/views/layouts/'}));
+
 app.set('view engine', 'hbs');
 
 app.use(cors());//allow the communication between domains in different ports
@@ -28,28 +27,6 @@ app.use(bodyParser.json());//allow the request of the body element in json
 app.use(routes);
 app.use(autosanitizer.allUnsafe);
 
-
-
-
-//app.get('/get/html',function(req,res){
-   // res.writeHead(200,{'content-Type':'text/html'});
-//});
-
-//fs.readFile('./views/index.html', null, function (error, data) {
-        //if (error) {
-           // console.log(error);
-      //  }
-        // else {
-         //   console.log(data);
-       // }
-      //  res.end();
-   
-
-   // app.post('/post/json', function(req, res) {
-   // function appendJSON(obj) {
-     //console.log(obj);
-  //  };
-//});
 
 
 

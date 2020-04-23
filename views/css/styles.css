@@ -61,14 +61,3 @@ table.responsiveTable {
  
 }
 
-.form-control{
-  
-    width: 100%;
-    padding: 10px;
- 
-    border-radius: 5px 5px 5px 5px;
-    background: rgba(240,240,240,0.5);
-  border-radius: 0px 0px 10px 10px;
-
-
-}

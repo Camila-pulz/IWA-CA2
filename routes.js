@@ -11,20 +11,17 @@ router.get('/', (req, res) => {//function to present the index page once the req
 
 //To save a new media to the database 
 router.post('/', (req, res) => {
-    var newmedia = new Media();
-    newmedia.category = req.body.category;
-    newmedia.title = req.body.title;
-    newmedia.genre = req.body.genre; 
-    newmedia.year = req.body.year;
-    newmedia.duration = req.body.duration;
-    newmedia.comments = req.body.comments;
-    newmedia.save((err, media) => {//function that saves the data into MongoDB
-        if (err) { //throws an error if there is any issue
-            res.status(400).json(err);
+    var newmedia = new Media(req.body);
+    newmedia.save((err, media) => { 
+        if (err) { 
+            console.log("There was an error"); 
         }
-        res.redirect('/displayRecords'); 
-    });
+        else{
+           res.redirect('./displayRecords');
+        }
 });
+});
+       
 
 //to get all the records on the database 
 router.get('/displayRecords', (req, res) => {
@@ -42,13 +39,10 @@ router.get('/displayRecords', (req, res) => {
        
         })
         .lean();
-
-       
-         
     });
 
 //to get a specific media from the database 
-router.get('/users/:id', (req, res) => {
+router.get('/get/:id', (req, res) => {
     Media.findOne({ _id: req.params.id }, function (err, media) {
         if (err) {
             res.status(400).json(err);
@@ -60,17 +54,16 @@ router.get('/users/:id', (req, res) => {
 
 
 //to delete a record from the database
-router.delete('/:id', (req, res) => {
-    Media.findByIdAndRemove(req.params.id, function (err, media) {
-        if (err) {
-            res.status(400).json(err);
+router.get('/displayRecords/:id', (req, res) => {
+    Media.findByIdAndRemove(req.params.id, (err, media) => {
+        if (!err) {
+            res.redirect('/displayRecords');
         }
-        res.json(media);
     });
 });
 
 //to update a record in the database 
-router.patch('/users/:id', (req, res) => {
+router.patch('/update/:id', (req, res) => {
     Media.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }, function (err, media) {
         if (err) {
             res.status(400).json(err);

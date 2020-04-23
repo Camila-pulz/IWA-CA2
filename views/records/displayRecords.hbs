@@ -8,7 +8,7 @@
 	        <th>Year</th>
 	        <th>Duration</th>
             <th>Comments</th>
-            <th></th>
+            <th>Action</th>
         </tr>
     </thread>
     <tbody>
@@ -21,8 +21,11 @@
 	        <td>{{this.duration}}</td>
             <td>{{this.comments}}</td> 
             <td>
-                <a><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
-                <a><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+           <form action="displayRecords/{{this._id}}" method="GET">
+           <div class="form-group">
+        <button type="submit" class="btn btn-info">Delete</button>
+    </div>
+    </form>
              </td>   
         </tr>  
         {{/each}}
