@@ -1,4 +1,5 @@
-<table class="table table-stripped">
+
+<table class="table table-striped">
     <thread>
         <tr>
             <th>Category</th>
@@ -7,7 +8,24 @@
 	        <th>Year</th>
 	        <th>Duration</th>
             <th>Comments</th>
+            <th></th>
         </tr>
     </thread>
+    <tbody>
+        {{#each display}}
+        <tr>
+            <td>{{this.category}}</td>
+            <td>{{this.title}}</td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 > 
+            <td>{{this.genre}}</td>
+	        <td>{{this.year}}</td>
+	        <td>{{this.duration}}</td>
+            <td>{{this.comments}}</td> 
+            <td>
+                <a><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                <a><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+             </td>   
+        </tr>  
+        {{/each}}
 
+    </tbody>
 </table>

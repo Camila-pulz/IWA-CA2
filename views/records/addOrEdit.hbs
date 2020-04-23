@@ -1,25 +1,25 @@
 <h3>{{viewTitle}}</h3>
 
-<form actio="/records" method='POST'>
+<form action="/records" method='POST'>
     <div class= "form-group">
-        <input type="text" class="form-control" name="category" placeholder="Category">
+        <input type="text" class="form-control" name="category" placeholder="Category" value="{{newmedia.category}}">
     </div>
     <div class= "form-group">
-        <input type="text" class="form-control" name="title" placeholder="Title">
+        <input type="text" class="form-control" name="title" placeholder="Title" value="{{newmedia.title}}">
     </div>
     <div class= "form-group">
-        <input type="text" class="form-control" name="genre" placeholder="Genre">
+        <input type="text" class="form-control" name="genre" placeholder="Genre" value="{{newmedia.genre}}">
     </div>
     <div class= "form-row">
         <div class="form-group col-mid-8">  
-            <input type="text" class="form-control" name="year" placeholder="Year">
+            <input type="text" class="form-control" name="year" placeholder="Year" value="{{newmedia.year}}">
     </div>
         <div class="form-group col-mid-8"> 
-             <input type="text" class="form-control" name="year" placeholder="Duration">
+             <input type="text" class="form-control" name="duration" placeholder="Duration" value="{{newmedia.duration}}">
     </div>         
     </div>
     <div class= "form-group">
-        <input type="text" class="form-control" name="comments" placeholder="Comments">
+        <input type="text" class="form-control" name="comments" placeholder="Comments" value="{{newmedia.comments}}">
     </div> 
     <div class= "form-group">
         <button type="submit" class="btn btn-info">Submit</button>

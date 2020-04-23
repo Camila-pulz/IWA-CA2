@@ -1,5 +1,6 @@
 const express = require('express');
 const handlebars = require('express-handlebars');//this package handles a form to be filled by the user
+const expressHandlebars = require('express-handlebars');
 const path = require('path');
 const http = require('http');//this module is important to open the html on the browser
 const fs = require('fs');//this module is important to open the html on the browser
@@ -8,16 +9,18 @@ const routes = require('./routes');
 const bodyParser = require("body-parser");//to convert the json files
 const cors = require('cors');//this module allows the communication between domains in different ports
 const autosanitizer = require('express-autosanitizer');//to sanitise the code
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 require('dotenv/config');//this package allow the credentials to be stored in other file and not be shown on the code
 
 
 const app = express();//function to create the server
-//const server = http.createServer(app);//function to create the web server
+const server = http.createServer(app);//function to create the web server
 
 //app.use(express.static(path.resolve(__dirname,'views')));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('views', path.join(__dirname, '/views/'));
-app.engine('hbs', handlebars({extname: 'hbs', defaultLayout: 'mainLayout', layoutsDir: __dirname + '/views/layouts/'}));
+app.engine('hbs', handlebars({extname: 'hbs', defaultLayout: 'mainLayout', layoutsDir: __dirname + '/views/layouts/'}), 
+expressHandlebars({handlebars: allowInsecurePrototypeAccess(handlebars)}));
 app.set('view engine', 'hbs');
 
 app.use(cors());//allow the communication between domains in different ports
