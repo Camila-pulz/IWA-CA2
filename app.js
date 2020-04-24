@@ -15,12 +15,12 @@ require('dotenv/config');//this package allow the credentials to be stored in ot
 const app = express();//function to create the server
 const server = http.createServer(app);//function to create the web server
 
-//app.use(express.static(path.resolve(__dirname,'views')));
-app.use(bodyParser.urlencoded({extended: true}));
-app.set('views', path.join(__dirname, '/views/'));
-app.engine('hbs', handlebars({extname: 'hbs', defaultLayout: 'mainLayout', layoutsDir: __dirname + '/views/layouts/'}));
 
-app.set('view engine', 'hbs');
+app.use(express.static(path.join(__dirname, '/views/')));//line that allows the sytlesheet file to be applied to the handlebars
+app.use(bodyParser.urlencoded({extended: true}));
+//app.set('views', path.join(__dirname, 'views'));
+app.engine('hbs', handlebars({extname: 'hbs', defaultLayout: 'mainLayout', layoutsDir: __dirname + '/views/layouts/'}));
+app.set('view engine', 'hbs');//set the handlebars engine 
 
 app.use(cors());//allow the communication between domains in different ports
 app.use(bodyParser.json());//allow the request of the body element in json

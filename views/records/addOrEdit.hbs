@@ -1,27 +1,36 @@
 <h3>{{viewTitle}}</h3>
 
-<form action="/" method='POST'>
+<form action="/" method='post'>
     <div class= "form-group">
-        <input type="text" class="form-control" name="category" placeholder="Category">
+        <label for="category">Category</label>
+        <input type="text" class="form-control" name="category" placeholder="Movies, series or others" id="category" required>
     </div>
     <div class= "form-group">
-        <input type="text" class="form-control" name="title" placeholder="Title">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" name="title" placeholder="Name of the record" id="title" required>
     </div>
     <div class= "form-group">
-        <input type="text" class="form-control" name="genre" placeholder="Genre">
+        <label for="genre">Genre</label>
+        <input type="text" class="form-control" name="genre" placeholder="Drama, comedy or others" id="genre" required>
     </div>
     <div class= "form-row">
-        <div class="form-group col-mid-8">  
-            <input type="text" class="form-control" name="year" placeholder="Year">
-    </div>
-        <div class="form-group col-mid-8"> 
-             <input type="text" class="form-control" name="duration" placeholder="Duration">
+        <div class="form-group col-6">
+            <label for="year">Year</label>
+            <input type="text" class="form-control" name="year" placeholder="Year of release" id="year" required>
+        </div>    
+        <div class="form-group col-6">
+            <label for="duration">Duration</label> 
+            <input type="text" class="form-control" name="duration" placeholder="Duration or seasons" id="duration" required>
     </div>         
     </div>
-    <div class= "form-group">
-        <input type="text" class="form-control" name="comments" placeholder="Comments">
+    <div class= "form-group">        
+        <label for="comments">Comments</label>
+        <input type="text" class="form-control" name="comments" placeholder="Comments, reminders or others" id="comments">
     </div> 
     <div class= "form-group">
         <button type="submit" class="btn btn-info">Submit</button>
+        <a class="btn btn-info" href="/displayRecords">Bucket</a>
     </div>
 </form>
+ 
+    
