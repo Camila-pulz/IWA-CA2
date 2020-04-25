@@ -14,6 +14,7 @@ require('dotenv/config');//this package allow the credentials to be stored in ot
 
 const app = express();//function to create the server
 const server = http.createServer(app);//function to create the web server
+var port = process.env.PORT || 3000;
 
 
 app.use(express.static(path.join(__dirname, '/views/')));//line that allows the sytlesheet file to be applied to the handlebars
@@ -39,4 +40,4 @@ mongoose.connect(
 
 
 //listening to the server
-app.listen(3000);
+app.listen(port);
