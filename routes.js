@@ -1,3 +1,13 @@
+/*Code references: 
+Front-end (Express Handlebars): CodAffection: Complete Node.js Express MongoDb CRUD(2018) 
+Available on: https://www.youtube.com/watch?v=voDummz1gO0&feature=youtu.be(Last Accessed on 25/04/2020)
+Back-end (Node.js and MonngoDB): Dev Ed. Rest API Tutorial: Build a Restful Api with Node.js Express & MongoDB. 
+Available on:https://www.youtube.com/watch?v=vjf774RKrLc&t=976s (Last accessed on 22/04/2020)
+Caleb Curry. Node.js and MongoDB Express- Rest API Tutorial 
+Available on https://www.youtube.com/watch?v=1VA0MPwFcyU (Last accessed on 20/04/2020)
+Mikhail Timoneef gitpod that were used in his lectures. 
+Available on https://github.com/mikhail-cct/mongodb-test.git
+*/
 //this file hold all the operations for the media records
 const express = require('express');
 const router = express.Router();
